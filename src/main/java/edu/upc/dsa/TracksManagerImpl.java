@@ -1,12 +1,15 @@
 package edu.upc.dsa;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
+import org.apache.log4j.Logger;
+
+import java.util.*;
+
 
 public class TracksManagerImpl implements TracksManager {
     private static TracksManager instance;
     protected List<Track> tracks;
+
+    final Logger log = Logger.getLogger(TracksManagerImpl.class);
 
     private TracksManagerImpl() {
         this.tracks = new LinkedList<>();
