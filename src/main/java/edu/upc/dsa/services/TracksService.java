@@ -19,6 +19,9 @@ import java.util.List;
 @Path("/tracks")
 public class TracksService {
 
+    //  http://localhost:8080/dsaApp/swagger.json
+    //  http://localhost:8080/swagger/
+
     private TracksManager tm;
 
     public TracksService() {
