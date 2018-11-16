@@ -1,8 +1,8 @@
 package edu.upc.dsa.services;
 
 import edu.upc.dsa.Track;
-import edu.upc.dsa.TracksManager;
-import edu.upc.dsa.TracksManagerImpl;
+import edu.upc.dsa.MyBike;
+import edu.upc.dsa.MyBikeImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -15,39 +15,39 @@ import javax.ws.rs.core.Response;
 import java.util.ArrayList;
 import java.util.List;
 
-@Api(value = "/tracks", description = "Endpoint to Track Service")
+@Api(value = "/bikes", description = "Endpoint to Bike Service")
 @Path("/tracks")
-public class TracksService {
+public class BikeService {
 
     //  http://localhost:8080/dsaApp/swagger.json
     //  http://localhost:8080/swagger/
 
-    private TracksManager tm;
+    private MyBike mb;
 
-    public TracksService() {
-        this.tm = TracksManagerImpl.getInstance();
-        if (tm.size()==0) {
-            this.tm.addTrack("La Barbacoa", "Georgie Dann");
-            this.tm.addTrack("Despacito", "Luis Fonsi");
-            this.tm.addTrack("Enter Sandman", "Metallica");
-        }
+    public BikeService() {
+        this.mb = MyBikeImpl.getInstance();
+        this.mb.addUser("user1", "Juan", "Lopex");
+
+        this.mb.addStation("Station1","description:: station1", 10, 3, 3);
+        this.mb.addStation("Station2","description:: station2", 10, 3, 3);
+
+        this.mb.addBike("bike101", "descripton", 25.45, "Station1");
+        this.mb.addBike("bike102", "descripton", 70.3, "Station1");
+        this.mb.addBike("bike103", "descripton", 10.2, "Station1");
+
+        this.mb.addBike("bike201", "descripton", 1325.45, "Station2");
+        this.mb.addBike("bike202", "descripton", 74430.3, "Station2");
+        this.mb.addBike("bike203", "descripton", 1320.2, "Station2");
 
 
     }
 
-    @GET
-    @ApiOperation(value = "get all Track", notes = "asdasd")
-    @ApiResponses(value = {
-            @ApiResponse(code = 201, message = "Successful", response = Track.class, responseContainer="List"),
-    })
     @Path("/")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getTracks() {
 
-        List<Track> tracks = this.tm.findAll();
 
-        GenericEntity<List<Track>> entity = new GenericEntity<List<Track>>(tracks) {};
-        return Response.status(201).entity(entity).build()  ;
+        return Response.status(201).entity().build()  ;
 
     }
 
