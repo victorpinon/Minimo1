@@ -34,6 +34,27 @@ public class MyBikeImpl implements MyBike{
 
     //  /Singleton
 
+    public int size() {
+        if(userMap.size()==0 || stationNumber == 0){
+            return 0;
+        } else {
+            int i = 0;
+            boolean f = false;
+            while (stationArray.length > i && !f){
+                if (stationArray[i].getBikeListStation().size() > 0){
+                    f = true;
+                } else{
+                    i++;
+                }
+            }
+            if(f==true){
+                return 1;
+            } else {
+                return 0;
+            }
+        }
+    }
+
     public int findStation(String idStation){
         int i = 0;
         boolean f = false;
