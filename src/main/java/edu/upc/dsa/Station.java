@@ -27,7 +27,7 @@ public class Station {
     }
 
     public int addBikeStation(Bike bike){
-        if(this.bikeListStation.size()<=this.max){
+        if(this.bikeListStation.size()<this.max){
             this.bikeListStation.add(bike);
             return 1;
         } else{
@@ -39,8 +39,8 @@ public class Station {
         if(bikeListStation.size()==0){
             return null;
         } else{
-            Bike x = bikeListStation.get(bikeListStation.size()-1);
-            bikeListStation.remove(bikeListStation.size()-1);
+            Bike x = bikeListStation.get(0);
+            bikeListStation.remove(0);
             return x;
         }
     }

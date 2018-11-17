@@ -63,7 +63,7 @@ public class MyBikeTest {
 
     }
 
-    @Test//(expected = StationFullException.class)
+    @Test(expected = StationFullException.class)
     public void testAddBikesAndStationFull() throws Exception {
         this.mb.addStation("Station3","description", 2, 3, 3);
         Assert.assertEquals(3, this.mb.numStations());
@@ -76,7 +76,7 @@ public class MyBikeTest {
     }
 
 
-    @Test//(expected = StationNotFoundException.class)
+    @Test(expected = StationNotFoundException.class)
     public void testAddBikesAndStationNotFound() throws Exception {
         this.mb.addBike("bike1", "descripton", 55.4,"StationXXXXX");
     }
@@ -102,17 +102,17 @@ public class MyBikeTest {
     public void testGetBikes() throws Exception {
 
         Bike b1 = this.mb.getBike("Station1", "user1");
-        Assert.assertEquals("bike103", b1.getBikeId());
+        Assert.assertEquals("bike101", b1.getBikeId());
         Assert.assertEquals(2, this.mb.numBikes("Station1"));
 
         Bike b2 = this.mb.getBike("Station2", "user1");
-        Assert.assertEquals("bike203", b2.getBikeId());
+        Assert.assertEquals("bike201", b2.getBikeId());
         Assert.assertEquals(2, this.mb.numBikes("Station1"));
 
         List<Bike> bikes = this.mb.bikesByUser("user1");
 
-        Assert.assertEquals("bike103", bikes.get(0).getBikeId());
-        Assert.assertEquals("bike203", bikes.get(1).getBikeId());
+        Assert.assertEquals("bike101", bikes.get(0).getBikeId());
+        Assert.assertEquals("bike201", bikes.get(1).getBikeId());
 
     }
 

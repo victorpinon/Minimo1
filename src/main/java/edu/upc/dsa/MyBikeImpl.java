@@ -84,11 +84,13 @@ public class MyBikeImpl implements MyBike{
             int ok = stationArray[i].addBikeStation(x);
             if(ok == 0){
                 log.warn("Bike  " +idBike+" could not be added: station is full");
+                throw new StationFullException("Station full");
             } else{
                 log.info("Bike  " +idBike+" added succesfully to station: " +stationArray[i].getIdStation());
             }
         } else{
             log.warn("Bike  " +idBike+" could not be added: station does not exist");
+            throw new StationNotFoundException("Could not find this station");
         }
     }
 
@@ -107,7 +109,7 @@ public class MyBikeImpl implements MyBike{
             return bikesByStation;
         } else{
             log.warn("Station doesnt exist");
-            return null;
+            throw new StationNotFoundException("Could not find this station");
         }
 
     }
@@ -118,7 +120,7 @@ public class MyBikeImpl implements MyBike{
             User user = this.userMap.get(userId);
             if(user == null){
                 log.warn("User does not exist");
-                return null;
+                throw new UserNotFoundException("Could not find this user");
             } else{
                 Bike x = stationArray[i].getBikeStation();
                 user.addBikeUser(x);
@@ -127,7 +129,7 @@ public class MyBikeImpl implements MyBike{
             }
         } else{
             log.warn("Bike could not be added: station does not exist");
-            return null;
+            throw new StationNotFoundException("Could not find this station");
         }
     }
 
@@ -135,7 +137,7 @@ public class MyBikeImpl implements MyBike{
         User user = this.userMap.get(userId);
         if(user == null){
             log.warn("User does not exist");
-            return null;
+            throw new UserNotFoundException("Could not find this user");
         } else {
             return user.getBikeListUser();
         }
@@ -147,20 +149,6 @@ public class MyBikeImpl implements MyBike{
 
     public int numStations(){
         return stationNumber;
-        /*int i = 0;
-        boolean f = false;
-        while(!f && i < stationArray.length){
-            if(stationArray[i] == null){
-                f=true;
-            } else{
-                i++;
-            }
-        }
-        if (f==true){
-            return i;
-        } else {
-            return stationArray.length;
-        }*/
     }
 
     public int numBikes(String idStation){
