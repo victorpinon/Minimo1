@@ -18,18 +18,19 @@ public class MyBikeImpl implements MyBike{
 
     public static MyBikeImpl getInstance() {
         if (ourInstance==null)
-            ourInstance = new MyBikeImpl();
+            ourInstance = new MyBikeImpl(MyBike.S);
         return ourInstance;
     }
 
-    private MyBikeImpl(){
+    private MyBikeImpl(int S){
         this.userMap = new HashMap<String, User>();
-        this.stationArray = new Station[100];
+        this.stationArray = new Station[S];
         this.stationNumber = 0;
     }
 
     public void clear(){
-        ourInstance = new MyBikeImpl();
+        int S = ourInstance.stationArray.length;
+        ourInstance = new MyBikeImpl(S);
     }
 
     //  /Singleton
